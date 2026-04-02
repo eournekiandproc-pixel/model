@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<title>Խելացի լծակ</title>
+<style>
+body {
+    font-family: Arial;
+    background: #f3e7d1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px;
+}
+canvas {
+    border: 2px solid #111;
+    border-radius: 8px;
+    background: #E0F7FF;
+}
+input { width:70px; margin:5px; }
+</style>
+</head>
+<body>
+
+<h2>Խելացի լծակ</h2>
+
+<div>
+Ձախ քաշ <input id="lw" type="number" value="20">
+Ձախ հեռ. <input id="ld" type="number" value="1" step="0.1"><br>
+Աջ քաշ <input id="rw" type="number" value="80">
+Աջ հեռ. <input id="rd" type="number" value="1" step="0.1">
+</div>
+
+<canvas id="c" width="800" height="300"></canvas>
+
+<script>
+const c = document.getElementById("c");
+const ctx = c.getContext("2d");
+
+const pivotX = 400;
+const pivotY = 150;
+const scale = 120;
+
+let angle = 0;
+
+let left = {m:20,d:1};
+let right = {m:80,d:1};
+
+const lw = document.getElementById("lw");
+const rw = document.getElementById("rw");
+const ld = document.getElementById("ld");
+const rd = document.getElementById("rd");
+
+function update(){
+    left.m = +lw.value || 0;
+    right.m = +rw.value || 0;
+    left.d = Math.max(0, +ld.value || 0);
+    right.d = Math.max(0, +rd.value || 0);
+}
+[lw,rw,ld,rd].forEach(i=>i.oninput=update);
+update();
+
+let dragging=null;
+
+// DRAG FIX (rotate aware)
+c.onmousedown=e=>{
+    let x=e.offsetX-pivotX;
+    let y=e.offsetY-pivotY;
+
+    let cos=Math.cos(-angle);
+    let sin=Math.sin(-angle);
+    let rx=x*cos-y*sin;
+
+    if(Math.abs(rx + left.d*scale)<20) dragging="left";
+    if(Math.abs(rx - right.d*scale)<20) dragging="right";
+};
+c.onmouseup=()=>dragging=null;
+
+c.onmousemove=e=>{
+    if(!dragging) return;
+
+    let x=e.offsetX-pivotX;
+    let y=e.offsetY-pivotY;
+
+    let cos=Math.cos(-angle);
+    let sin=Math.sin(-angle);
+    let rx=x*cos-y*sin;
+
+    if(dragging==="left"){
+        left.d=Math.max(0,-rx/scale);
+        ld.value=left.d.toFixed(2);
+    }
+    if(dragging==="right"){
+        right.d=Math.max(0,rx/scale);
+        rd.value=right.d.toFixed(2);
+    }
+};
+
+function draw(){
+
+    ctx.clearRect(0,0,800,300);
+
+    // ==== ՔԱՆՈՆ (ֆիքսված, չի պտտվում) ====
+    ctx.strokeStyle="#333";
+    ctx.fillStyle="#333";
+    ctx.lineWidth=1;
+
+    for(let i=-3;i<=3;i+=0.5){
+        let x=pivotX + i*scale;
+        let h = (i%1===0)?15:8;
+
+        ctx.beginPath();
+        ctx.moveTo(x,pivotY+25);
+        ctx.lineTo(x,pivotY+25-h);
+        ctx.stroke();
+
+        if(i%1===0){
+            ctx.fillText(Math.abs(i)+"m",x-10,pivotY+45);
+        }
+    }
+
+    // ==== ՖԻԶԻԿԱ ====
+    let tL = left.m * left.d;
+    let tR = right.m * right.d;
+
+    let diff = tL - tR;
+    let target = diff * 0.02;
+
+    target = Math.max(-0.4, Math.min(0.4, target));
+
+    angle += (target - angle) * 0.08;
+
+    // ==== ՏԵՔՍՏ ====
+    ctx.fillStyle="black";
+    if(Math.abs(diff)<0.1){
+        ctx.fillText("Հավասարակշռված է ✅",330,30);
+    } else if(diff>0){
+        ctx.fillText("⬅️ Ձախ ծանր",350,30);
+    } else {
+        ctx.fillText("➡️ Աջ ծանր",350,30);
+    }
+
+    // ==== ԼԾԱԿ ====
+    ctx.save();
+    ctx.translate(pivotX,pivotY);
+    ctx.rotate(angle);
+
+    ctx.beginPath();
+    ctx.moveTo(-left.d*scale,0);
+    ctx.lineTo(right.d*scale,0);
+    ctx.lineWidth=6;
+    ctx.strokeStyle="#555";
+    ctx.stroke();
+
+    drawW(-left.d*scale,0,"#3498db",left.m);
+    drawW(right.d*scale,0,"#e74c3c",right.m);
+
+    ctx.restore();
+
+    // pivot
+    ctx.beginPath();
+    ctx.arc(pivotX,pivotY,10,0,Math.PI*2);
+    ctx.fill();
+
+}
+
+function drawW(x,y,color,m){
+    ctx.beginPath();
+    ctx.arc(x,y-20,18,0,Math.PI*2);
+    ctx.fillStyle=color;
+    ctx.fill();
+
+    ctx.fillStyle="white";
+    ctx.fillText(m+"kg",x-12,y-15);
+}
+
+setInterval(draw,30);
+</script>
+
+</body>
+</html>
