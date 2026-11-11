@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mythos — Greek Mythology Explorer</title>
+<style>
+:root{--ink:#f7f1e5;--muted:#c8bda9;--gold:#e6bd72;--deep:#101a2a;--panel:#19283b;--line:rgba(230,189,114,.25)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--deep);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+header{min-height:78vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:70px 20px;background:linear-gradient(180deg,rgba(8,16,28,.28),#101a2a 96%),url('https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?auto=format&fit=crop&w=1800&q=85') center/cover}
+.hero{max-width:850px}.eyebrow{letter-spacing:5px;text-transform:uppercase;color:var(--gold);font:12px Arial,sans-serif}.hero h1{font-size:clamp(3.5rem,9vw,7rem);margin:18px 0 10px;font-weight:400;letter-spacing:3px}.hero p{font:17px/1.7 Arial,sans-serif;color:#eee4d3;max-width:650px;margin:0 auto 28px}
+.btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:13px 23px;text-decoration:none;text-transform:uppercase;letter-spacing:2px;font:12px Arial,sans-serif;transition:.2s}.btn:hover{background:var(--gold);color:#101a2a}
+nav{position:sticky;top:0;z-index:5;background:rgba(13,24,39,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:30px;padding:17px 12px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font:12px Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase}nav a:hover{color:var(--gold)}
+main{max-width:1150px;margin:auto;padding:70px 22px}.section-head{text-align:center;margin-bottom:35px}.section-head small{color:var(--gold);letter-spacing:4px;text-transform:uppercase;font:11px Arial}.section-head h2{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:400;margin:12px 0}.section-head p{color:var(--muted);font:15px/1.7 Arial;max-width:650px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}.card{background:linear-gradient(145deg,#20334a,#172538);border:1px solid var(--line);padding:24px;min-height:220px;transition:.25s}.card:hover{transform:translateY(-5px);border-color:var(--gold)}.symbol{font-size:35px}.card h3{font-size:25px;font-weight:400;margin:13px 0 8px;color:var(--gold)}.card p{font:14px/1.65 Arial;color:var(--muted);margin:0}.tag{display:inline-block;margin-top:15px;color:#e8d6b6;font:10px Arial;letter-spacing:2px;text-transform:uppercase}
+#stories{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#132136;max-width:none}.story-wrap{max-width:1150px;margin:auto;padding:70px 22px}.story{display:grid;grid-template-columns:1fr 1.3fr;gap:35px;align-items:center}.story-art{min-height:300px;background:linear-gradient(135deg,rgba(16,26,42,.15),rgba(16,26,42,.8)),url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1000&q=80') center/cover;border:1px solid var(--line)}.story h3{font-size:32px;font-weight:400;color:var(--gold)}.story p{font:15px/1.8 Arial;color:var(--muted)}
+.quiz{max-width:700px;margin:auto;background:var(--panel);border:1px solid var(--line);padding:28px}.quiz h3{font-size:25px;font-weight:400;color:var(--gold);margin-top:0}.quiz p{font:15px Arial;color:var(--muted)}.answers{display:grid;gap:10px;margin:20px 0}.answers button{background:#22364e;border:1px solid var(--line);color:var(--ink);padding:13px;text-align:left;cursor:pointer;font:14px Arial}.answers button:hover{border-color:var(--gold)}#result{color:var(--gold);min-height:24px;font:14px Arial}
+footer{text-align:center;padding:35px 20px;border-top:1px solid var(--line);color:var(--muted);font:12px Arial;letter-spacing:1px}
+@media(max-width:700px){.story{grid-template-columns:1fr}.story-art{min-height:220px}nav{gap:15px}nav a{font-size:10px}}
+</style>
+</head>
+<body>
+<header id="home">
+ <div class="hero">
+  <div class="eyebrow">Legends • Gods • Heroes</div>
+  <h1>MYTHOS</h1>
+  <p>Step into the world of ancient Greece. Meet the Olympian gods, discover legendary heroes, and explore stories that have inspired people for thousands of years.</p>
+  <a class="btn" href="#gods">Explore the myths</a>
+ </div>
+</header>
+<nav><a href="#home">Home</a><a href="#gods">The Gods</a><a href="#heroes">Heroes</a><a href="#stories">Myths</a><a href="#quiz">Quiz</a></nav>
+<main>
+ <section id="gods">
+  <div class="section-head"><small>Mount Olympus</small><h2>The Olympian Gods</h2><p>According to Greek mythology, these powerful gods lived on Mount Olympus and influenced the world of mortals.</p></div>
+  <div class="grid">
+   <article class="card"><div class="symbol">⚡</div><h3>Zeus</h3><p>King of the gods and ruler of the sky. His symbols include the thunderbolt, eagle, and oak tree.</p><span class="tag">Sky • Thunder • Justice</span></article>
+   <article class="card"><div class="symbol">🌊</div><h3>Poseidon</h3><p>God of the sea, earthquakes, and horses. He is often shown carrying a three-pronged trident.</p><span class="tag">Sea • Storms • Horses</span></article>
+   <article class="card"><div class="symbol">🏛️</div><h3>Athena</h3><p>Goddess of wisdom, strategy, and crafts. The owl and olive tree are among her symbols.</p><span class="tag">Wisdom • Strategy</span></article>
+   <article class="card"><div class="symbol">☀️</div><h3>Apollo</h3><p>God associated with music, prophecy, healing, and the sun. His symbols include the lyre and laurel.</p><span class="tag">Music • Prophecy • Light</span></article>
+   <article class="card"><div class="symbol">🌹</div><h3>Aphrodite</h3><p>Goddess of love and beauty, often associated with the sea, doves, roses, and myrtle.</p><span class="tag">Love • Beauty</span></article>
+   <article class="card"><div class="symbol">🔥</div><h3>Hephaestus</h3><p>God of fire, metalworking, and craftsmanship. In myths, he created remarkable objects for gods and heroes.</p><span class="tag">Fire • Craft • Invention</span></article>
+  </div>
+ </section>
+ <section id="heroes" style="padding-top:85px">
+  <div class="section-head"><small>Beyond Olympus</small><h2>Legendary Heroes</h2><p>Mortals and demigods whose courage, cleverness, and choices became unforgettable legends.</p></div>
+  <div class="grid">
+   <article class="card"><div class="symbol">🦁</div><h3>Heracles</h3><p>Known for completing twelve extraordinary labours, including the capture of the Nemean Lion.</p></article>
+   <article class="card"><div class="symbol">🧵</div><h3>Theseus</h3><p>Remembered for entering the Labyrinth and defeating the Minotaur with help from Ariadne.</p></article>
+   <article class="card"><div class="symbol">🏹</div><h3>Odysseus</h3><p>The clever king of Ithaca whose long journey home after the Trojan War is told in the Odyssey.</p></article>
+   <article class="card"><div class="symbol">🛡️</div><h3>Achilles</h3><p>A central Greek warrior in the Iliad, celebrated for his strength and remembered for his complicated fate.</p></article>
+  </div>
+ </section>
+</main>
+<section id="stories">
+ <div class="story-wrap">
+  <div class="section-head"><small>Stories through time</small><h2>One Myth to Begin With</h2></div>
+  <div class="story">
+   <div class="story-art" role="img" aria-label="Classical painting inspired artwork"></div>
+   <div><h3>Persephone and the Seasons</h3><p>In one famous Greek myth, Persephone, daughter of Demeter, spends part of the year in the Underworld and part with her mother. Demeter is the goddess of agriculture, and her grief during Persephone's absence is used to explain the barren months. Her joyful reunion helps bring the earth back to life. The story became an ancient way of understanding the changing seasons.</p><p><em>Myths have many versions, and details can differ between ancient authors.</em></p></div>
+  </div>
+ </div>
+</section>
+<main id="quiz">
+ <div class="section-head"><small>Test your knowledge</small><h2>Mythology Quiz</h2><p>Choose an answer and see what you know about the ancient Greek world.</p></div>
+ <div class="quiz">
+  <h3 id="question">Which god ruled the sea?</h3>
+  <p id="counter">Question 1 of 3</p>
+  <div class="answers" id="answers">
+   <button onclick="answer(0)">A. Apollo</button><button onclick="answer(1)">B. Poseidon</button><button onclick="answer(2)">C. Hermes</button>
+  </div>
+  <div id="result" aria-live="polite"></div>
+ </div>
+</main>
+<footer>MYTHOS • AN INTRODUCTION TO GREEK MYTHOLOGY</footer>
+<script>
+const questions=[
+ {q:"Which god ruled the sea?",a:["Apollo","Poseidon","Hermes"],correct:1,why:"Poseidon was the god of the sea and carried a trident."},
+ {q:"Who was the goddess of wisdom?",a:["Athena","Aphrodite","Demeter"],correct:0,why:"Athena was associated with wisdom and strategic skill."},
+ {q:"Which hero entered the Labyrinth?",a:["Odysseus","Achilles","Theseus"],correct:2,why:"Theseus entered the Labyrinth and faced the Minotaur."}
+];
+let current=0,score=0,locked=false;
+function render(){
+ const q=questions[current];locked=false;
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("counter").textContent=`Question ${current+1} of ${questions.length} • Score: ${score}`;
+ document.getElementById("result").textContent="";
+ document.getElementById("answers").innerHTML=q.a.map((a,i)=>`<button onclick="answer(${i})">${String.fromCharCode(65+i)}. ${a}</button>`).join("");
+}
+function answer(i){
+ if(locked)return;locked=true;const q=questions[current];
+ const result=document.getElementById("result");
+ if(i===q.correct){score++;result.textContent="Correct! "+q.why;}
+ else result.textContent="Not quite. "+q.why;
+ document.getElementById("counter").textContent=`Question ${current+1} of ${questions.length} • Score: ${score}`;
+ document.getElementById("answers").innerHTML=`<button onclick="nextQuestion()">${current===questions.length-1?"See result":"Next question"} →</button>`;
+}
+function nextQuestion(){
+ current++;
+ if(current<questions.length)render();
+ else{
+  document.getElementById("question").textContent="Your quest is complete!";
+  document.getElementById("counter").textContent=`Final score: ${score} / ${questions.length}`;
+  document.getElementById("result").textContent=score===3?"Excellent! You know your Greek myths.":"Well done! Explore the page and try again.";
+  document.getElementById("answers").innerHTML='<button onclick="restart()">Try again ↻</button>';
+ }
+}
+function restart(){current=0;score=0;render()}
+</script>
+</body>
+</html>
